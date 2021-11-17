@@ -1,1 +1,24 @@
-<p>vehiculos works!</p>
+<div class="container row m-auto mt-5">
+  <div class="col-12 col-md-4">
+    <app-sidebarfiltro></app-sidebarfiltro>
+  </div>
+  <div class="col-12 col-md-8">
+    <!--Card 1-->
+    <app-loadingspinner *ngIf="show"></app-loadingspinner>
+    <div *ngFor="let v of listVehiculos; let i = index;"  [ngClass]="{'nodisponible': v.disponibilidad}" class="card card-car mt-5">
+      <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <img class="card-img" src="../../assets/{{v.img_url}}" alt="">
+        </div>
+        <div class="card-body col-md-12 col-lg-6">
+          <h5 class="card-title">{{v.marca}}</h5>
+          <h6 class="text-muted">{{v.modelo}}</h6>
+          <p class="card-text">{{v.descripcion}}</p>
+          <p class="card-text precio">1 Dia x {{v.precio_por_dia | currency:'CLP'}} </p>
+          <button class="btn btn-primary" *ngIf="!v.disponibilidad" (click)="addToAgenda(i)">Reservar</button>
+          <a href="#" *ngIf="v.disponibilidad" class="btn btn-primary">No disponible</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

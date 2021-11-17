@@ -1,0 +1,95 @@
+<div class="mt-5">
+    <form method="post" id="form" name="registration" action="" novalidate="novalidate">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-5 mb-md-0">
+                    <h2 class="h3 mb-3 text-black">Datos</h2>
+                    <div class="p-3 p-lg-5 border">
+                        <div class="form-group">
+                            <label for="comuna" class="text-black">Comuna <span class="text-danger">*</span></label>
+                            <select id="comuna" class="form-control" name="comuna">  
+                                <option value="default">Seleciona tu comuna</option>
+                                <option value="santiago">Santiago</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="nombre" class="text-black">Nombre <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="nombre" name="nombre">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="apellido" class="text-black">Apellido <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="apellido" name="apellido">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12 mb-2">
+                                <label for="direccion" class="text-black">Dirección <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingresa direccion">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="direccion2" name="direccion2" class="form-control" placeholder="Nº departamento, Casa, etc.">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="datepicker" class="text-black">Fecha <span class="text-danger">*</span></label>
+                                <input type="text" class="search-box form-control hasDatepicker" name="datepicker" id="datepicker" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-5">
+                            <div class="col-md-6">
+                                <label for="email" class="text-black">Email <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="telefonotelefono" class="text-black">Teléfono <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="telefono" name="telefono" value="" placeholder="9 XXXX XXXX">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_order_notes" class="text-black">Notas Adicionales</label>
+                            <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Indicaciones, sugerencias aqui..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <h2 class="h3 mb-3 text-black">Tu Orden</h2>
+                            <div class="p-3 p-lg-5 border">
+                                <table class="table site-block-order-table mb-1">
+                                    <thead>
+                                        <tr>
+                                            <th>Agenda</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of items">
+                                            <td>{{ item.marca }}<strong class="mx-2">x</strong> 1</td>
+                                            <td>{{ item.precio_por_dia | currency }} x Dia</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-black font-weight-bold"><strong>Total Agenda</strong></td>
+                                            <td class="text-black font-weight-bold"><strong>$0</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="form-group row mb-5">
+                                    <div class="col-12 text-black p-4 mb-4"> 
+                                        <p class="border-bottom pb-3">Metodo de pago:</p>
+                                    </div>
+                                    <div id="pagos"></div>
+                                </div>
+                                <input class="btn btn-primary btn-lg w-50 mx-auto" id="" type="button" value="Pagar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
