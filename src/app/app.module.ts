@@ -27,8 +27,6 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatInputModule } from '@angular/material/input';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
-import { NgbdDatepickerI18nModule } from './_shared/datepicker/datepicker-i18n.module';
-import { NgbdDatepickerOverviewDemoComponent } from './_components/datepicker-overview-demo.component';
 
 
 @NgModule({
@@ -42,7 +40,6 @@ import { NgbdDatepickerOverviewDemoComponent } from './_components/datepicker-ov
     FooterComponent,
     InicioComponent,
     AlertComponent,
-    NgbdDatepickerOverviewDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +56,6 @@ import { NgbdDatepickerOverviewDemoComponent } from './_components/datepicker-ov
     MatInputModule,
     NgbPaginationModule, 
     NgbAlertModule,
-    NgbdDatepickerI18nModule,
     
   ],
   providers: [
