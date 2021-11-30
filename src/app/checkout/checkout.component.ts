@@ -147,20 +147,23 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  ListaFecha() {
-    this.arriendoService.disabledDays(this.idVehiculo).subscribe(x => { this.holidayList = x })
+  ListaFecha(id) {
+    this.arriendoService.disabledDays(id).subscribe(x => { this.holidayList = x})
     this.holidayList.map(x => new Date(x))
   }
   
   ngOnInit(): void {
-    
-      this.ListaFecha();
+  
 
       if(this.items.length==0){
         this.router.navigate(['../vehiculos'], { relativeTo: this.route });
       } else {
         this.idVehiculo = this.items[0]['id'];
+        console.log("id vehiculo " + this.idVehiculo)
       }
+
+      this.ListaFecha(this.idVehiculo);
+
       this.form = this.formBuilder.group({
         fecha_salida: ['', Validators.required],
         fecha_retorno: ['', Validators.required],
@@ -252,7 +255,7 @@ export class CheckoutComponent implements OnInit {
     .subscribe({
         next: () => {
             this.alertService.success('Gracias por tu reserva', { keepAfterRouteChange: true });
-            //this.router.navigate(['../'], { relativeTo: this.route });
+            this.router.navigate(['../profile'], { relativeTo: this.route });
         },
         error: error => {
             this.alertService.error(error);
