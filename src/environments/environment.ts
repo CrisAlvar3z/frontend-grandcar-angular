@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://backend-grandcar.herokuapp.com/'
+  apiUrl: 'http://localhost:4000'
 };
 
 /*
