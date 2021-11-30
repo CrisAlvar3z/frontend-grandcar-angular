@@ -1,55 +1,79 @@
 <div class="mt-5">
-    <form method="post" id="form" name="registration" action="" novalidate="novalidate">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-5 mb-md-0">
                     <h2 class="h3 mb-3 text-black">Datos</h2>
                     <div class="p-3 p-lg-5 border">
-                        <div class="form-group">
-                            <label for="comuna" class="text-black">Comuna <span class="text-danger">*</span></label>
-                            <select id="comuna" class="form-control" name="comuna">  
-                                <option value="default">Seleciona tu comuna</option>
-                                <option value="santiago">Santiago</option>
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label for="nombre" class="text-black">Nombre <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="nombre" name="nombre">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="apellido" class="text-black">Apellido <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="apellido" name="apellido">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-12 mb-2">
-                                <label for="direccion" class="text-black">Dirección <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingresa direccion">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="direccion2" name="direccion2" class="form-control" placeholder="Nº departamento, Casa, etc.">
-                        </div>
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <div class="col-md-12">
-                                <label for="datepicker" class="text-black">Fecha <span class="text-danger">*</span></label>
-                                <input type="text" class="search-box form-control hasDatepicker" name="datepicker" id="datepicker" autocomplete="off">
+                                <label for="email" class="text-black">Fecha<span class="text-danger">*</span></label>
+                                <mat-form-field class="">
+                                  
+                                    <mat-date-range-input [min]="today" [dateFilter]="holidayDateFilter" [rangePicker]="picker">
+                                      <input matStartDate formControlName="fecha_salida">
+                                      <input matEndDate formControlName="fecha_retorno">
+                                    </mat-date-range-input>
+                                    
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  
+                                    <mat-date-range-picker #picker (closed)="onClose()" ></mat-date-range-picker>
+                                  
+                                </mat-form-field>
+                                <div *ngIf="submitted && f.fecha_salida.errors" class="">
+                                    <div *ngIf="f.fecha_salida.errors.required">Fecha requiredo</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row mb-5">
-                            <div class="col-md-6">
-                                <label for="email" class="text-black">Email <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="telefonotelefono" class="text-black">Teléfono <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" value="" placeholder="9 XXXX XXXX">
+                        
+                        <div class="form-group row mb-3">
+                            <div class="col-md-12">  
+                                <label for="hora" class="text-black">Hora <span class="text-danger">*</span></label>
+                                <select id="hora" class="form-control" formControlName="hora_salida">  
+                                    <option value="default">Seleciona una Hora</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:00">11:00</option>
+                                    <option value="10:00">12:00</option>
+                                    <option value="10:00">13:00</option>
+                                    <option value="10:00">14:00</option>
+                                    <option value="10:00">15:00</option>
+                                    <option value="10:00">16:00</option>
+                                    <option value="10:00">17:00</option>
+                                    <option value="10:00">18:00</option>
+                                </select>
+                                <div *ngIf="submitted && f.hora_salida.errors" class="">
+                                    <div *ngIf="f.hora_salida.errors.required">Hora requiredo</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="c_order_notes" class="text-black">Notas Adicionales</label>
-                            <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Indicaciones, sugerencias aqui..."></textarea>
+
+                        <div class="form-group row mb-2">
+                            <div class="col-md-12">  
+                                <input #isDespacho id="isDespacho" formControlName="despacho" class="mr-2" type="checkbox" [checked]="despacho" (change)="checkDespapcho(isDespacho.checked)">
+                                <label>Despacho</label>
+                            </div>
+                        </div>
+
+                        <div *ngIf="despacho" class="form-group row">
+                            <div class="col-md-12">
+                                <label for="email" class="text-black">Tu direccion</label>
+                                <input readonly type="text" class="form-control mt-1"  formControlName="direccion_desp" value="{{account.domicilio['direccion']}}" id="email" name="email">
+                                <div *ngIf="submitted && f.direccion_desp.errors" class="">
+                                    <div *ngIf="f.direccion_desp.errors.required">Direccion requireda</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="!despacho" class="form-group row">
+                            <div class="col-md-12">
+                                <label for="email" class="text-black">Retiro en sucursal<span class="text-danger">*</span></label>
+                                <select id="hora" class="form-control mt-1" (change)="changeSucursal($event)" formControlName="nombre_sucursal">
+                                    <option *ngFor="let sucursal of Sucursal" [ngValue]="sucursal" value="{{sucursal}}">{{sucursal}}</option>
+                                </select>
+                                <div *ngIf="submitted && f.nombre_sucursal.errors" class="">
+                                    <div *ngIf="f.nombre_sucursal.errors.required">Sucursal requerida</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,7 +96,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-black font-weight-bold"><strong>Total Agenda</strong></td>
-                                            <td class="text-black font-weight-bold"><strong>$0</strong></td>
+                                            <td class="text-black font-weight-bold"><strong>{{totaldias | currency }}</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -82,7 +106,9 @@
                                     </div>
                                     <div id="pagos"></div>
                                 </div>
-                                <input class="btn btn-primary btn-lg w-50 mx-auto" id="" type="button" value="Pagar">
+                                <button  [disabled]="DisabledReserva" class="btn btn-primary btn-lg w-50 mx-auto" id="" type="submit" value="Pagar">
+                                    Reservar
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -91,5 +117,3 @@
         </div>
     </form>
 </div>
-
-

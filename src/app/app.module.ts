@@ -10,11 +10,26 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingspinnerComponent } from './_shared/loadingspinner/loadingspinner.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor, ErrorInterceptor, appInitializer } from './_helpers';
-import { AccountService } from './_services';
+import { AccountService,ArriendoService } from './_services';
 import { AlertComponent } from './_components';
-import { HomeComponent } from './home';
+import { FooterComponent } from './_shared/footer/footer.component';
+import { InicioComponent } from './_shared/inicio/inicio.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MatInputModule } from '@angular/material/input';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbdDatepickerI18nModule } from './_shared/datepicker/datepicker-i18n.module';
+import { NgbdDatepickerOverviewDemoComponent } from './_components/datepicker-overview-demo.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +38,11 @@ import { HomeComponent } from './home';
     MenuComponent,
     SidebarfiltroComponent,
     CheckoutComponent,
-    LoadingspinnerComponent
+    LoadingspinnerComponent,
+    FooterComponent,
+    InicioComponent,
+    AlertComponent,
+    NgbdDatepickerOverviewDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -31,12 +50,24 @@ import { HomeComponent } from './home';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatMomentDateModule,
+    MatInputModule,
+    NgbPaginationModule, 
+    NgbAlertModule,
+    NgbdDatepickerI18nModule,
+    
   ],
   providers: [
+    ArriendoService,
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
+    { provide: MAT_DATE_LOCALE, useValue: 'es-CL' }
     // provider used to create fake backend
     //fakeBackendProvider
   ],

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../_services';
+import { Account, Role } from '../../_models';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  account: Account;
+  constructor(private accountService:AccountService) { 
+    this.accountService.account.subscribe(x => this.account = x);
+  }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    this.accountService.logout();
+  }
 }

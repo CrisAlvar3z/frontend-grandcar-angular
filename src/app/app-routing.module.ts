@@ -6,12 +6,14 @@ import { VehiculosComponent } from './vehiculos/vehiculos.component';
 import { HomeComponent } from './home';
 import { AuthGuard } from './_helpers';
 import { Role } from './_models';
+import { InicioComponent } from './_shared/inicio/inicio.component';
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 const adminModule = () => import('./admin/admin.module').then(x => x.AdminModule);
 const profileModule = () => import('./profile/profile.module').then(x => x.ProfileModule);
 
 const routes: Routes = [
+  { path: '', component: InicioComponent},
   { path: 'vehiculos', component: VehiculosComponent},
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },

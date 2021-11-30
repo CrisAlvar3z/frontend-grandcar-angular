@@ -10,12 +10,10 @@ const baseUrl = `${environment.apiUrl}/vehiculos`;
 })
 export class VehiculosService {
 
-  url = 'http://localhost:4000/vehiculos';
-
   constructor(private http: HttpClient) { }
 
   getVehiculos(): Observable<any> {
-    return this.http.get(this.url);
+    return this.http.get(`${baseUrl}/`);
   }
   
 }

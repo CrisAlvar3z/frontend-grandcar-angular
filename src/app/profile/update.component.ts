@@ -23,6 +23,8 @@ export class UpdateComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+
+        console.log(this.account)
         this.form = this.formBuilder.group({
             title: [this.account.title, Validators.required],
             firstName: [this.account.firstName, Validators.required],

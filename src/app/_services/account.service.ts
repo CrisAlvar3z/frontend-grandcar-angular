@@ -6,6 +6,7 @@ import { map, finalize } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { Account } from '@app/_models';
+import { Direccion } from '@app/_models';
 
 const baseUrl = `${environment.apiUrl}/accounts`;
 
@@ -22,14 +23,16 @@ export class AccountService {
         this.account = this.accountSubject.asObservable();
     }
 
-    public get accountValue(): Account {
+    public get accountValue() {
         return this.accountSubject.value;
     }
 
     login(email: string, password: string) {
         return this.http.post<any>(`${baseUrl}/authenticate`, { email, password }, { withCredentials: true })
             .pipe(map(account => {
+                //console.log(account)
                 this.accountSubject.next(account);
+                //console.log(this.accountSubject);
                 this.startRefreshTokenTimer();
                 return account;
             }));
@@ -51,8 +54,8 @@ export class AccountService {
             }));
     }
 
-    register(account: Account) {
-        return this.http.post(`${baseUrl}/register`, account);
+    register(account: Account, direccion: Direccion) {
+        return this.http.post(`${baseUrl}/register`, {account, direccion});
     }
 
     verifyEmail(token: string) {
@@ -95,7 +98,7 @@ export class AccountService {
                 return account;
             }));
     }
-    
+
     delete(id: string) {
         return this.http.delete(`${baseUrl}/${id}`)
             .pipe(finalize(() => {
@@ -112,7 +115,8 @@ export class AccountService {
     private startRefreshTokenTimer() {
         // parse json object from base64 encoded jwt token
         const jwtToken = JSON.parse(atob(this.accountValue.jwtToken.split('.')[1]));
-
+        //console.log("startRefreshTokenTimer")
+        //console.log(this.accountValue)
         // set a timeout to refresh the token a minute before it expires
         const expires = new Date(jwtToken.exp * 1000);
         const timeout = expires.getTime() - Date.now() - (60 * 1000);
