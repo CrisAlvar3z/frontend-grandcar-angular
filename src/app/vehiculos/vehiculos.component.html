@@ -8,12 +8,12 @@
     <div *ngFor="let v of listVehiculos; let i = index;"  [ngClass]="{'nodisponible': v.disponibilidad}" class="card card-car mt-5">
       <div class="row">
         <div class="col-md-12 col-lg-6">
-            <img class="card-img" src="../../assets/{{v.img_url}}" alt="">
+            <img class="card-img p-4" src="../../assets/{{v.img_url}}" alt="">
         </div>
         <div class="card-body col-md-12 col-lg-6">
           <h5 class="card-title">{{v.marca}}</h5>
-          <h6 class="text-muted">{{v.modelo}}</h6>
-          <p class="card-text">{{v.descripcion}}</p>
+            <h6 class="text-muted">{{v.modelo}} {{v.anio}}</h6>
+          <p class="card-text text-justify" style="padding-right: 0.8rem;">{{v.descripcion}}</p>
           <p class="card-text precio">1 Dia x {{v.precio_por_dia | currency:'CLP'}} </p>
           <button class="btn btn-primary" *ngIf="!v.disponibilidad" (click)="addToAgenda(i)">Reservar</button>
           <a href="#" *ngIf="v.disponibilidad" class="btn btn-primary">No disponible</a>

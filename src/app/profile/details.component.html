@@ -1,8 +1,42 @@
-﻿<h1>My Profile</h1>
-<p>
-    <strong>Name: </strong> {{account.title}} {{account.firstName}} {{account.lastName}}<br />
-    <strong>Email: </strong> {{account.email}}
-    <strong>Direccion: </strong> {{account.email}}
-</p>
-<p><a routerLink="update">Update Profile</a></p>
-<td>{{account | json}}</td>
+﻿<section class="mb-3 w-75 m-auto">
+    <img src="../../../assets/Banner 6.jpg" class="w-100" alt="">
+</section>
+<div class="text-center mb-5 mt-3">
+    <img src="../../../assets/Person.png" alt="">
+    <h1>Perfil</h1>
+</div>
+<section class="container w-75">
+    <div class="row">
+        <div class="col-12 col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nombre</h5>
+              <p class="card-text">{{account.firstName}} {{account.lastName}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Correo</h5>
+              <p class="card-text">{{ account.email }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Domicilio</h5>
+                <p class="card-text">{{ direccion }}</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 mb-4">
+            <div class="card" style="min-height: 100px!important;">
+              <div class="card-body m-auto d-flex align-items-center">
+                <a routerLink="update" class="btn btn-primary">Actualizar Perfil</a>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
