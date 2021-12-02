@@ -6,6 +6,8 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { LayoutComponent } from './layout.component';
 import { DetailsComponent } from './details.component';
 import { UpdateComponent } from './update.component';
+import { MisArriendosComponent } from './mis-arriendos.component';
+import { SinoPipe } from '@app/_shared/sino.pipe';
 
 @NgModule({
     imports: [
@@ -16,7 +18,9 @@ import { UpdateComponent } from './update.component';
     declarations: [
         LayoutComponent,
         DetailsComponent,
-        UpdateComponent
+        UpdateComponent,
+        MisArriendosComponent,
+        SinoPipe
     ]
 })
 export class ProfileModule { }

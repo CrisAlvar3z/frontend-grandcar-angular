@@ -154,8 +154,8 @@ export class CheckoutComponent implements OnInit {
   
   ngOnInit(): void {
   
-
-      if(this.items.length==0){
+      console.log(this.account)
+      if(this.items.length==0 || this.account==undefined){
         this.router.navigate(['../vehiculos'], { relativeTo: this.route });
       } else {
         this.idVehiculo = this.items[0]['id'];
@@ -255,7 +255,7 @@ export class CheckoutComponent implements OnInit {
     .subscribe({
         next: () => {
             this.alertService.success('Gracias por tu reserva', { keepAfterRouteChange: true });
-            this.router.navigate(['../profile'], { relativeTo: this.route });
+            this.router.navigate(['../profile/mis-arriendos'], { relativeTo: this.route });
         },
         error: error => {
             this.alertService.error(error);

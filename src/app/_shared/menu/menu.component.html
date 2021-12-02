@@ -13,7 +13,7 @@
             <a class="nav-link" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact:true}" aria-current="page" >Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="/vehiculos">Reserva</a>
+            <a class="nav-link" routerLinkActive="active" routerLink="/vehiculos">Reservar</a>
           </li>
           <div class="dropdown"  *ngIf="account" style="margin-left: 0.5rem;">
             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,13 +24,13 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" routerLink="/profile">Ver perfil</a>
-              <a class="dropdown-item" href="#">Mis Arrienndos</a>
+              <a class="dropdown-item"  routerLink="/profile/mis-arriendos">Mis arriendos</a>
               <div class="dropdown-divider"></div>
-              <a (click)="logout()" class="dropdown-item">Cerrar Sesion</a>
+              <a (click)="logout()" class="dropdown-item">Cerrar sesión</a>
             </div>
           </div>
           <li *ngIf="!account">
-            <a class="btn btn-light order-1 order-lg-0" routerLink="/account/login">login<svg class="bi bi-person-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <a class="btn btn-light order-1 order-lg-0" routerLink="/account/login">Iniciar sesión <svg class="bi bi-person-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
               <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
             </svg></a>
           </li>

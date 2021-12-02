@@ -1,0 +1,33 @@
+<h1 class="mt-3 mb-4 text-center"> Mis Arriendos</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nº</th>
+        <th scope="col">Fecha salida</th>
+        <th scope="col">Fecha retorno</th>
+        <th scope="col">Hora salida</th>
+        <th scope="col">Hora retorno</th>
+        <th scope="col">cant. dias</th>
+        <th scope="col">total</th>
+        <th scope="col">despacho</th>
+        <th scope="col">direccion/ubicacion</th>
+        <th scope="col">vehiculo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of arriendos; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{d.fecha_salida | date:"dd/MM/yyyy"}}</td>
+        <td>{{d.fecha_retorno | date:"dd/MM/yyyy"}}</td>
+        <td>{{d.hora_salida}}</td>
+        <td>{{d.hora_retorno}}</td>
+        <td>{{d.cant_dias}}</td>
+        <td>{{d.total | currency:'CLP'}}</td>
+        <td>{{d.despacho | SiNo }}</td>
+        <td>{{d.direccion_desp}}</td>
+        <td>{{d.vehiculo.marca}} {{d.vehiculo.modelo}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  

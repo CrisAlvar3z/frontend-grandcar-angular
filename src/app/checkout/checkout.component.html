@@ -11,8 +11,8 @@
                                 <mat-form-field class="">
                                   
                                     <mat-date-range-input [min]="today" [dateFilter]="holidayDateFilter" [rangePicker]="picker">
-                                      <input matStartDate formControlName="fecha_salida">
-                                      <input matEndDate formControlName="fecha_retorno">
+                                      <input matStartDate formControlName="fecha_salida" placeholder="Desde">
+                                      <input matEndDate formControlName="fecha_retorno" placeholder="Hasta">
                                     </mat-date-range-input>
                                     
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -21,14 +21,18 @@
                                   
                                 </mat-form-field>
                                 <div *ngIf="submitted && f.fecha_salida.errors" class="">
-                                    <div *ngIf="f.fecha_salida.errors.required">Fecha requiredo</div>
+                                    <div *ngIf="f.fecha_salida.errors.required" class="Deladitoygris">*Fecha de salida requerida</div>
                                 </div>
+                                <div *ngIf="submitted && f.fecha_retorno.errors" class="">
+                                    <div *ngIf="f.fecha_retorno.errors.required" class="Deladitoygris">*Fecha de retorno requerida</div>
+                                </div>
+                                <div *ngIf="DisabledReserva" class="Deladitoygris">*Fechas no disponibles</div>
                             </div>
                         </div>
                         
                         <div class="form-group row mb-3">
                             <div class="col-md-12">  
-                                <label for="hora" class="text-black">Hora <span class="text-danger">*</span></label>
+                                <label for="hora" class="text-black">Hora<span class="text-danger">*</span></label>
                                 <select id="hora" class="form-control" formControlName="hora_salida">  
                                     <option value="default">Seleciona una Hora</option>
                                     <option value="10:00">10:00</option>
@@ -42,7 +46,7 @@
                                     <option value="10:00">18:00</option>
                                 </select>
                                 <div *ngIf="submitted && f.hora_salida.errors" class="">
-                                    <div *ngIf="f.hora_salida.errors.required">Hora requiredo</div>
+                                    <div *ngIf="f.hora_salida.errors.required" class="Deladitoygris">*Campo requerido</div>
                                 </div>
                             </div>
                         </div>
@@ -56,10 +60,10 @@
 
                         <div *ngIf="despacho" class="form-group row">
                             <div class="col-md-12">
-                                <label for="email" class="text-black">Tu direccion</label>
+                                <label for="email" class="text-black">Tu dirección</label>
                                 <input readonly type="text" class="form-control mt-1"  formControlName="direccion_desp" value="{{account.domicilio['direccion']}}" id="email" name="email">
                                 <div *ngIf="submitted && f.direccion_desp.errors" class="">
-                                    <div *ngIf="f.direccion_desp.errors.required">Direccion requireda</div>
+                                    <div *ngIf="f.direccion_desp.errors.required" class="Deladitoygris">*Campo requerido</div>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +75,7 @@
                                     <option *ngFor="let sucursal of Sucursal" [ngValue]="sucursal" value="{{sucursal}}">{{sucursal}}</option>
                                 </select>
                                 <div *ngIf="submitted && f.nombre_sucursal.errors" class="">
-                                    <div *ngIf="f.nombre_sucursal.errors.required">Sucursal requerida</div>
+                                    <div *ngIf="f.nombre_sucursal.errors.required" class="Deladitoygris"> *Campo requerido</div>
                                 </div>
                             </div>
                         </div>
@@ -92,17 +96,17 @@
                                     <tbody>
                                         <tr *ngFor="let item of items">
                                             <td>{{ item.marca }}<strong class="mx-2">x</strong> 1</td>
-                                            <td>{{ item.precio_por_dia | currency }} x Dia</td>
+                                            <td>{{ item.precio_por_dia | currency:'CLP' }} x Día</td>
                                         </tr>
                                         <tr>
                                             <td class="text-black font-weight-bold"><strong>Total Agenda</strong></td>
-                                            <td class="text-black font-weight-bold"><strong>{{totaldias | currency }}</strong></td>
+                                            <td class="text-black font-weight-bold"><strong>{{totaldias | currency:'CLP'}}</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="form-group row mb-5">
                                     <div class="col-12 text-black p-4 mb-4"> 
-                                        <p class="border-bottom pb-3">Metodo de pago:</p>
+                                        <p class="border-bottom pb-3">Método de pago:</p>
                                     </div>
                                     <div id="pagos"></div>
                                 </div>

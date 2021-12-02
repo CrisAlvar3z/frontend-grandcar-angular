@@ -27,6 +27,7 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatInputModule } from '@angular/material/input';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { SinoPipe } from './_shared/sino.pipe';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     NgbAlertModule,
     
   ],
+
   providers: [
     ArriendoService,
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
