@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService, ArriendoService, AlertService } from '@app/_services';
 import { first } from 'rxjs/operators';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 @Component({
   selector: 'app-checkout',
@@ -29,6 +30,8 @@ export class CheckoutComponent implements OnInit {
   despacho = true;
   account = this.accountService.accountValue;
   Sucursal: any = ['GrandCar Las Condes', 'GrandCar Vitacura', 'GrandCar Peñalolen']
+  maxNewDate;
+  maxDate;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -153,8 +156,10 @@ export class CheckoutComponent implements OnInit {
   }
   
   ngOnInit(): void {
-  
-      console.log(this.account)
+      this.maxDate = new Date()
+      this.maxNewDate = this.maxDate.setMonth(this.maxDate.getMonth()+4);
+      //console.log(this.maxNewDate)
+      //console.log(this.account)
       if(this.items.length==0 || this.account==undefined){
         this.router.navigate(['../vehiculos'], { relativeTo: this.route });
       } else {

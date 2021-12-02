@@ -10,7 +10,7 @@
                                 <label for="email" class="text-black">Fecha<span class="text-danger">*</span></label>
                                 <mat-form-field class="">
                                   
-                                    <mat-date-range-input [min]="today" [dateFilter]="holidayDateFilter" [rangePicker]="picker">
+                                    <mat-date-range-input [min]="today" [max]="maxDate" [dateFilter]="holidayDateFilter" [rangePicker]="picker">
                                       <input matStartDate formControlName="fecha_salida" placeholder="Desde">
                                       <input matEndDate formControlName="fecha_retorno" placeholder="Hasta">
                                     </mat-date-range-input>
