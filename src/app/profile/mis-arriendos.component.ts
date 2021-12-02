@@ -16,7 +16,7 @@ export class MisArriendosComponent implements OnInit {
     
     ngOnInit() {
         console.log(this.account)
-        if(this.account.arriendos=="" || this.account.arriendos==undefined || this.account.arriendos==null) {
+        if((this.account.arriendos==undefined || this.account.arriendos==null) && this.account.length!=0) {
             window.location.reload();
         }
     }
