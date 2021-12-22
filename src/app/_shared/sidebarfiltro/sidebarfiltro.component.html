@@ -27,21 +27,21 @@
                 <div class="filter-content">
                     <div class="card-body">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input mr-1" id="Check1">
-                            <label class="custom-control-label" for="Check1">Mitsubishi</label>
+                            <input #isChecked class="mr-1" type="checkbox" name="Mitsubishi" value="hola" (change)="checkFiltro($event)">
+                            <label class="custom-control-label" for="Mitsubishi">Mitsubishi</label>
                         </div> 
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input mr-1" id="Check2">
-                            <label class="custom-control-label" for="Check2">Chevrolet</label>
+                            <input #isChecked class="mr-1" type="checkbox" name="Chevrolet" (change)="checkFiltro($event)">
+                            <label class="custom-control-label" for="Chevrolet">Chevrolet</label>
                         </div> 
         
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input mr-1" id="Check3">
-                            <label class="custom-control-label" for="Check3">Toyota</label>
+                            <input #isChecked class="mr-1" type="checkbox" name="Toyota" (change)="checkFiltro($event)">
+                            <label class="custom-control-label" for="Toyota">Toyota</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input mr-1" id="Check4">
-                            <label class="custom-control-label" for="Check4">Hyundai</label>
+                            <input #isChecked class="mr-1" type="checkbox" name="Hyundai" (change)="checkFiltro($event)">
+                            <label class="custom-control-label" for="Hyundai">Hyundai</label>
                         </div>
                     </div> <!-- card-body.// -->
                 </div>
