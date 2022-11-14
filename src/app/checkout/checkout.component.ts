@@ -6,7 +6,8 @@ import * as moment from 'moment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService, ArriendoService, AlertService } from '@app/_services';
 import { first } from 'rxjs/operators';
-import { textChangeRangeIsUnchanged } from 'typescript';
+import { TransbankService } from '@app/_services/transbank.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -17,6 +18,7 @@ import { textChangeRangeIsUnchanged } from 'typescript';
 export class CheckoutComponent implements OnInit {
 
   form: FormGroup;
+  idVehiculo;
   items = this.agendaService.getItems();
   today = new Date();
   holidayList: any = [];
@@ -24,18 +26,20 @@ export class CheckoutComponent implements OnInit {
   loading = false;
   submitted = false;
   MatchDates;
-  idVehiculo;
-  DisabledReserva;
+  DisabledReserva = true;
   totaldias = 0;
   despacho = true;
   account = this.accountService.accountValue;
   Sucursal: any = ['GrandCar Las Condes', 'GrandCar Vitacura', 'GrandCar Peñalolen']
   maxNewDate;
   maxDate;
+  paymentData;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private agendaService: AgendaService,
+    private transbankService: TransbankService,
     private accountService: AccountService,
     private arriendoService: ArriendoService,
     private alertService: AlertService,
@@ -167,6 +171,17 @@ export class CheckoutComponent implements OnInit {
         console.log("id vehiculo " + this.idVehiculo)
       }
 
+      this.transbankService.create(this.idVehiculo).subscribe(data => {
+        this.paymentData = data
+        console.log( this.paymentData);
+      });
+      //   next: (data:any) => {
+      //     this.paymentData = data
+      //     // console.log(data);
+      //     // this.router.navigate(data.url);
+      //   }
+      // })
+
       this.ListaFecha(this.idVehiculo);
 
       this.form = this.formBuilder.group({
@@ -246,6 +261,7 @@ export class CheckoutComponent implements OnInit {
     //console.log(this.form.value);
     this.submitted = true;
 
+
     if(this.isDisabled()==true) {
       //console.log(this.form.valueChanges)
       return;
@@ -255,18 +271,18 @@ export class CheckoutComponent implements OnInit {
       } 
     }
 
-    this.arriendoService.saveArriendo(this.form.value)
-    .pipe(first())
-    .subscribe({
-        next: () => {
-            this.alertService.success('Gracias por tu reserva', { keepAfterRouteChange: true });
-            this.router.navigate(['../profile/mis-arriendos'], { relativeTo: this.route });
-        },
-        error: error => {
-            this.alertService.error(error);
-            this.loading = false;
-        }
-    });
+    // this.arriendoService.saveArriendo(this.form.value)
+    // .pipe(first())
+    // .subscribe({
+    //     next: () => {
+    //         this.alertService.success('Gracias por tu reserva', { keepAfterRouteChange: true });
+    //         this.router.navigate(['../profile/mis-arriendos'], { relativeTo: this.route });
+    //     },
+    //     error: error => {
+    //         this.alertService.error(error);
+    //         this.loading = false;
+    //     }
+    // });
 
     //console.log("DateMatch "+ this.MatchDates)
     //console.log(this.submitted)

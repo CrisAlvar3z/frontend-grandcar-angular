@@ -110,9 +110,17 @@
                                     </div>
                                     <div id="pagos"></div>
                                 </div>
-                                <button  [disabled]="DisabledReserva" class="btn btn-primary btn-lg w-50 mx-auto" id="" type="submit" value="Pagar">
+                                <div *ngIf="paymentData">
+                                    <form [action]="paymentData.url" method="POST">
+                                        <input type="hidden" name="token_ws" [value]="paymentData.token"/>
+                                        <button  [disabled]="DisabledReserva" class="btn btn-primary btn-lg w-50 mx-auto" id="" type="submit" value="Pagar">
+                                            Reservar
+                                        </button>
+                                    </form>
+                                </div>
+                                <!-- <button  [disabled]="DisabledReserva" class="btn btn-primary btn-lg w-50 mx-auto" id="" type="submit" value="Pagar">
                                     Reservar
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>

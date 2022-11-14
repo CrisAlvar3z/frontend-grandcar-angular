@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { SinoPipe } from './_shared/sino.pipe';
+import { GraciasComponent } from './checkout/gracias.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { SinoPipe } from './_shared/sino.pipe';
     FooterComponent,
     InicioComponent,
     AlertComponent,
+    GraciasComponent
   ],
   imports: [
     BrowserModule,
